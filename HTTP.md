@@ -79,3 +79,80 @@ MAC 层的传输单位是帧（frame），IP 层的传输单位是包（packet�
 
 
 如上就是我们常说的四层跟七层结构
+
+
+
+#### 请求头, 响应头
+
+由空行将请求头与 body 区分开
+
+host 是请求头里唯一的必须字段,其他字段都非必须
+
+
+
+#### HTTP 状态码
+
+1xx: 状态码属于提示信息，是协议处理的中间状态，实际能够用到的时候很少。
+
+2xx: 成功状态, 204 成功,但是没有 body 信息, 206分块下载, 通常还有头字段Content-Range:比如 bytes 0-99/2000 意思请求到了 2000bytes 中的第 0-99 这个 chunk
+
+3xx: 资源重定向, 通常会在响应头字段里用 Location 指明后续要跳转的 URI, 301 永久重定向, 302临时重定向, 304用于 if-modified-since 等条件请求, 表示资源未修改, 用于控制缓存
+
+4xx: 客户端请求报文有误, 服务器无法处理了
+
+![image-20220307224312395](https://imgs.wuazhu.cn/2022/0307/m1Lx1I_bNWo2f.png)
+
+5xx: 表示客户端请求报文正确, 但服务端处理时内部发生了错误, 无法返回响应数据
+
+
+
+#### body 的数据类型与编码
+
+- MIME type
+
+最早是用在邮件系统里的, http 取了其中一部分来标记 body的数据类型.形式是“type/subtype”的字符串
+
+1. text：即文本格式的可读数据，我们最熟悉的应该就是 text/html 了，表示超文本文档，此外还有纯文本 text/plain、样式表 text/css 等。
+2. image：即图像文件，有 image/gif、image/jpeg、image/png 等。
+3. audio/video：音频和视频数据，例如 audio/mpeg、video/mp4 等。
+4. application：数据格式不固定，可能是文本也可能是二进制，必须由上层应用程序来解释。常见的有 application/json，application/javascript、application/pdf 等，另外，如果实在是不知道数据是什么类型，像刚才说的“黑盒”，就会是 application/octet-stream，即不透明的二进制数据。
+
+- 编码格式“Encoding type”
+
+  1. gzip：GNU zip 压缩格式，也是互联网上最流行的压缩格式；
+  2. deflate：zlib（deflate）压缩格式，流行程度仅次于 gzip；
+  3. br：一种专门为 HTTP 优化的新压缩算法（Brotli）。
+
+- 客户端用 Accept告诉服务器希望接收什么样的数据而服务器用 Content头告诉客户端 实际发送了什么样的数据. Accept字段标记的是客户端可理解的 MIME type，可以用“,”做分隔符列出多个类型，让服务器有更多的选择余地，例如下面的这个头：
+
+  ```
+  Accept: text/html,application/xml,image/webp,image/png
+  
+  // 服务器返回
+  Content-Type: text/html
+  Content-Type: image/png
+  ```
+
+- Accept-Encoding 字段标记的是客户端支持的压缩格式
+
+  ```
+  Accept-Encoding: gzip, deflate, br
+  // 服务端返回
+  Content-Encoding: gzip
+  ```
+
+- Accept-Language 字段标记了客户端可理解的自然语言
+
+  ```
+  Accept-Language: zh-CN, zh, en
+  ```
+
+- 字符集在 HTTP 里使用的请求头字段是 Accept-Charset，但响应头里却没有对应的 Content-Charset，而是在 Content-Type 字段的数据类型后面用“charset=xxx”来表示，这点需要特别注意。
+
+  ```
+  Accept-Charset: gbk, utf-8
+  Content-Type: text/html; charset=utf-8
+  ```
+
+  
+

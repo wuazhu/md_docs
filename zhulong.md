@@ -23,7 +23,8 @@
 - lite_home_feeds_mini  **50 个**
 
   ```json
-  {"code":"接口请求失败code:2","url":"https://api.m.jd.com","requestData":{"appid":"lite-weapp","functionId":"lite_home_feeds_mini","clientVersion":"1.0.0","client":"mp","body":"{\"page\":\"19\",\"openid\":\"obiR-5GjA5SX92PxkoIRSED3AVpo\"}","t":1646370593003,"ext":{"prstate":"0"}},"pin":"","pt_key":"","route":"pages/index/index","paramOptions":{},"msg":"request:fail timeout"}
+  {"code":"接口请求失败code:2","url":"https://api.m.jd.com","requestData":{"appid":"lite-weapp","functionId":"lite_home_feeds_mini","clientVersion":"1.0.0","client":"mp","body":"{\"page\":\"19\",\"openid
+                                                                     \":\"obiR-5GjA5SX92PxkoIRSED3AVpo\"}","t":1646370593003,"ext":{"prstate":"0"}},"pin":"","pt_key":"","route":"pages/index/index","paramOptions":{},"msg":"request:fail timeout"}
   ```
 
 - request:fail 请求超时" 77 个
