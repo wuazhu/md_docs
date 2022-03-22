@@ -26,3 +26,16 @@
 1. 普通Taro 项目 git@coding.jd.com:MP.FE/normal-taro.git
 2. 普通 Taro Plugin 项目:  git@coding.jd.com:MP.FE/taro-plugin.git
 3. 普通 Taro 项目转 Plugin 项目:  git@coding.jd.com:MP.FE/taroNoraml2Plugin.git
+
+
+
+1. bdapp下线watchTower监控 已上线
+2. 芥么签到接口加固问题修复 已上线
+2. Taro 项目转换 Plugin 是否 ok 调研
+2. 上报问题查看
+
+
+
+## 上报问题
+
+1. 参数不清,到底传了什么参数?get 请求 post 请求都没有参数展示, 错误码是什么,后端返回是什么, 是什么 ua, 时间戳是什么. 环境信息是什么, 是哪个平台, 来源是哪里, 是哪个项目, 网络情况是什么. 客户端是什么, appid 是什么. 
