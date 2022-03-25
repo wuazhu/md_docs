@@ -48,7 +48,7 @@ static defaultProps
 
 constructor
 
-componentWillMount
+**UN_SAFE**componentWillMount
 
 render
 
@@ -56,7 +56,7 @@ componentDidMount
 
 👇🏻**组件运行时**👇🏻
 
-componentWillReceiveProps(nextProps) {}
+**UN_SAFE**componentWillReceiveProps(nextProps) {}
 
 > 第一次挂载不执行, 只有已挂载的组件,如果 props 改变将会进入这个生命周期, 然后再进入 shouldComponentUpdate 生命周期
 
@@ -64,7 +64,7 @@ shouldComponentUpdate(nextProps, nextState) {return true/false}
 
 > 如果 state 改变将会进入这个生命周期
 
-componentWillUpdate
+**UN_SAFE**componentWillUpdate
 
 render
 
@@ -144,9 +144,55 @@ function UserMemoPage(props) {
 
 
 
+userCallback(fn, deps) 相当于 useMemo(() => fn, deps)
 
 
 
+### Hoc
+
+```react
+// 如果是一个组建, 那么这个 Cmp 必须是大写
+const foo = Cmp => props => {
+  return (
+  	<div className="border">
+      	<Cmp {...props} omg="omg"/>
+    </div>
+  )
+}
+
+function Child(props) {
+  return <div>child</div>
+}
+
+const Foo = foo(Child)
+
+// foo 是一个高阶组建, 接收一个组建作为参数, 接收的组件是 Child, Child 是一个接收参数为 props 的函数,
+function PageTest() {
+  return (
+  	<div>
+    	<Foo />
+    </div>
+  )
+}
+```
+
+
+
+### Context
+
+context 跨层级三步走
+
+1. 创建 context 对象
+
+   const context = React.createContext()
+
+2. provider传递 value
+
+3. 子孙组件消费
+
+   1. contextType 消费
+   2. Consumer 消费
+   3. useContext 消费
 
 
 
