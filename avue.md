@@ -1,3 +1,5 @@
+
+
 一.Vue加载keep-alive组件
 
 keep-alive组件作为vue的内置组件,会在Vue进行初始化的时候,通过调用initGlobalAPI,加载到Vue项目当中
